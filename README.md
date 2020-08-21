@@ -26,3 +26,7 @@ Dependency to install before: `nautilus-python` (`python-nautilus` package on De
     or
     sudo rm /usr/share/nautilus-python/extensions/vscodeinsiders-nautilus.py
     ```
+
+```bash
+nautilus -q
+```
