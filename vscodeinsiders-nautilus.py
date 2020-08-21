@@ -16,6 +16,7 @@
 
 import os, subprocess
 from gi import require_version
+import urllib.parse
 require_version('Gtk', '3.0')
 require_version('Nautilus', '3.0')
 
@@ -66,5 +67,6 @@ class VSCodeInsidersNautilus(Nautilus.MenuProvider, GObject.GObject):
 	def _nautilus_run(self, menu, file):
 		"""'Open with VSCode Insiders' menu item callback."""
 		uri = file.get_uri()
+		uri = urllib.parse.unquote(uri)
 		uri = uri.replace('file://','')
 		subprocess.Popen([CODE, uri])
