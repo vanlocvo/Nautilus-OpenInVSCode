@@ -1,4 +1,4 @@
-# Nautilus Open with VSCode
+# Nautilus context menu: Open in VSCode
 Dependency to install before: `nautilus-python` (`python-nautilus` package on Debian / Ubuntu)
 ## Install 
 - VSCode:
