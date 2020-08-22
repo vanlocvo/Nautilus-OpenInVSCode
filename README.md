@@ -30,3 +30,6 @@ Dependency to install before: `nautilus-python` (`python-nautilus` package on De
 ```bash
 nautilus -q
 ```
+# Screenshot
+![](Figures/Screenshot.png "Screenshot")
+![](Figures/Screenshot.gif "Screenshot")
