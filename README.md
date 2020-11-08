@@ -3,6 +3,16 @@ Dependency to install before: `nautilus-python` (`python-nautilus` package on De
 ```bash
 sudo apt install python3-nautilus
 ```
+## Note
+If you install vscode from Snap Store, you must make symbolic links to /usr/bin/code
+```bash
+sudo ln -s /snap/bin/code /usr/bin/code
+```
+or
+```bash
+sudo ln -s $(which code) /usr/bin/code
+```
+
 ## Install 
 - VSCode:
     ```bash
