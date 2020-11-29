@@ -22,9 +22,9 @@ sudo ln -s $(which code) /usr/bin/code
     ```
 - VSCode Insider:
     ```bash
-    ./install-insiders.sh.sh
+    ./install-insiders.sh
     or
-    sudo ./install-insiders.sh.sh
+    sudo ./install-insiders.sh
     ```
 ## Uninstall 
 - Current User:
