@@ -15,21 +15,18 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os, subprocess
-from gi import require_version
 import urllib.parse
-require_version('Gtk', '3.0')
-require_version('Nautilus', '3.0')
 
 from gi.repository import Nautilus, GObject
 from gettext import gettext
 
 CODE = '/usr/bin/code'
 
-class VSCodeNautilus(Nautilus.MenuProvider, GObject.GObject):
+class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 	def __init__(self):
 		pass
 
-	def get_file_items(self, window, files):
+	def get_file_items(self, files):
 		"""Returns the menu items to display when one or more files/folders are
 		selected."""
 		# Don't show when more than 1 file is selected
@@ -39,19 +36,17 @@ class VSCodeNautilus(Nautilus.MenuProvider, GObject.GObject):
 
 		# Add the menu items
 		items = []
-		self.window = window
 		if file.get_uri_scheme() == "file": # must be a local file/directory
 			if os.path.exists(CODE):
 					items += [self._create_nautilus_item(file)]
 
 		return items 
 
-	def get_background_items(self, window, file):
+	def get_background_items(self, file):
 		"""Returns the menu items to display when no file/folder is selected
 		(i.e. when right-clicking the background)."""
 		# Add the menu items
 		items = []
-		self.window = window
 		if file.is_directory() and file.get_uri_scheme() == "file":
 				items += [self._create_nautilus_item(file)]
 		return items
