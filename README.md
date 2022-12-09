@@ -1,17 +1,23 @@
 # Nautilus context menu: Open in VSCode
-Dependency to install before: `nautilus-python` (`python-nautilus` package on Debian / Ubuntu)
-```bash
-sudo apt install python3-nautilus
-```
+Dependency to install before: `nautilus-python` (`python3-nautilus` package on Debian / Ubuntu)
+- Debian / Ubuntu
+    ```bash
+    sudo apt install python3-nautilus
+    ```  
+- Fedora
+    ```bash
+    sudo dnf install nautilus-python
+    ```
 ## Note
-If you install vscode from Snap Store, you must make symbolic links to /usr/bin/code
-```bash
-sudo ln -s /snap/bin/code /usr/bin/code
-```
-or
-```bash
-sudo ln -s $(which code) /usr/bin/code
-```
+- If you use Gnome verison <= 42 please check branch [gnome-42](https://github.com/vvanloc/Nautilus-OpenInVSCode/tree/gnome-42)
+- If you install vscode from Snap Store, you must make symbolic links to /usr/bin/code
+    ```bash
+    sudo ln -s /snap/bin/code /usr/bin/code
+    ```
+    or
+    ```bash
+    sudo ln -s $(which code) /usr/bin/code
+    ```
 
 ## Install 
 - VSCode:
