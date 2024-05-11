@@ -38,7 +38,7 @@ class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 		items = []
 		if file.get_uri_scheme() == "file": # must be a local file/directory
 			if os.path.exists(CODE):
-					items += [self._create_nautilus_item(file)]
+					items += [self._create_nautilus_item(file, 'File' )]
 
 		return items 
 
@@ -48,12 +48,12 @@ class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 		# Add the menu items
 		items = []
 		if file.is_directory() and file.get_uri_scheme() == "file":
-				items += [self._create_nautilus_item(file)]
+				items += [self._create_nautilus_item(file, 'Background')]
 		return items
 
-	def _create_nautilus_item(self, file):
+	def _create_nautilus_item(self, file, location):
 		"""Creates the 'Open with VSCode' menu item."""
-		item = Nautilus.MenuItem(name="VSCodeNautilus::Nautilus",
+		item = Nautilus.MenuItem(name="VSCodeNautilus::Nautilus"+location,
 		                         label=gettext("Open in Code"),
 		                         tip=gettext("Open this folder/file in Visual Studio Code"))
 		item.connect("activate", self._nautilus_run, file)
