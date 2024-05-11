@@ -20,7 +20,7 @@ import urllib.parse
 from gi.repository import Nautilus, GObject
 from gettext import gettext
 
-CODE = '/usr/bin/code'
+CODE = 'CODE_REPLACE'
 
 class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 	def __init__(self):
