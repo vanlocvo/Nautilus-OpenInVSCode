@@ -39,10 +39,24 @@ set_location() {
     elif [[ -e "/snap/bin/code" ]]; then
         echo "VSCode is installed in /snap/bin/code"
         sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
+    elif [[ -e "/usr/bin/codium" ]]; then
+        echo "VSCodium is installed in /usr/bin/codium"
+        sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
+    elif [[ -e "/snap/bin/codium" ]]; then
+        echo "VSCode is installed in /snap/bin/codium"
+        sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
     else 
-        echo "Could not find VSCode installation path"
-        read -p "Please enter the path to VSCode: " VAR
+        echo "Could not find VSCode/VSCodium installation path"
+        read -p "Please enter the path to VSCode/VSCodium : " VAR
         sed -i "s|/usr/bin/code|${VAR}|g" $TARGDIR/vscode-nautilus.py
+        if [[ ${VAR} =~ "codium" ]]; then 
+            sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
+            sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
+        fi;
     fi
 }
 
