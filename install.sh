@@ -4,7 +4,7 @@
 restart_nautilus()
 {
     read -p "Do you want restart Nautilus (Files) [Y/n]? " VAR
-    if [[ $VAR = 'n' || $VAR = 'N' ]]; then
+    if [[ $VAR = 'y' || $VAR = 'Y' ]]; then
         nautilus -q
     fi    
 }
