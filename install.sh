@@ -30,25 +30,48 @@ cp_file_sudo() {
 }
 
 set_location() {
+    # VSCode
     if [[ -e "/usr/bin/code" ]]; then
         echo "VSCode is installed in /usr/bin/code"
         sed -i "s|CODE_REPLACE|/usr/bin/code|g" $TARGDIR/vscode-nautilus.py
+    
+    # VSCode Insiders
     elif [[ -e "/usr/bin/code-insiders" ]]; then
         echo "VSCode is installed in /usr/bin/code-insiders"
         sed -i "s|CODE_REPLACE|/usr/bin/code|g" $TARGDIR/vscode-nautilus.py
+    
+    # VSCode installed with Snap
     elif [[ -e "/snap/bin/code" ]]; then
         echo "VSCode is installed in /snap/bin/code"
         sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
+
+    # VSCode installed with Flatpak
+    elif [[ -e "/var/lib/flatpak/app/com.visualstudio.code/current/active/files/bin/code" ]]; then
+        echo "VSCode is installed with Flatpak"
+        sed -i "s|CODE_REPLACE|flatpak run com.visualstudio.code|g" $TARGDIR/vscode-nautilus.py
+    
+    # VSCodium
     elif [[ -e "/usr/bin/codium" ]]; then
         echo "VSCodium is installed in /usr/bin/codium"
         sed -i "s|CODE_REPLACE|/usr/bin/codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
+    
+    # VSCodium installed with Snap
     elif [[ -e "/snap/bin/codium" ]]; then
-        echo "VSCode is installed in /snap/bin/codium"
+        echo "VSCodium is installed in /snap/bin/codium"
         sed -i "s|CODE_REPLACE|/snap/bin/codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
+
+    # VSCodium installed with Flatpak
+    elif [[ -e "/var/lib/flatpak/app/com.vscodium.codium/current/active/files/bin/codium" ]]; then
+        echo "VSCodium is installed with Flatpak"
+        sed -i "s|CODE_REPLACE|flatpak run com.vscodium.codium|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
+
+    # If none of the above, ask user to enter the path
     else 
         echo "Could not find VSCode/VSCodium installation path"
         read -p "Please enter the path to VSCode/VSCodium : " VAR

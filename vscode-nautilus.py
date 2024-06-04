@@ -64,4 +64,8 @@ class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 		uri = file.get_uri()
 		uri = urllib.parse.unquote(uri)
 		uri = uri.replace('file://','')
-		subprocess.Popen([CODE, uri])
+		if ' ' in CODE:
+			command = CODE.split(' ') + [uri]
+		else:
+			command = [CODE, uri]
+		subprocess.Popen(command)
