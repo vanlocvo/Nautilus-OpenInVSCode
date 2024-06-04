@@ -20,7 +20,8 @@ import urllib.parse
 from gi.repository import Nautilus, GObject
 from gettext import gettext
 
-CODE = 'CODE_REPLACE'
+INSTALL_PATH='INSTALL_PATH_REPLACE'
+COMMAND = 'COMMAND_REPLACE'
 
 class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 	def __init__(self):
@@ -37,8 +38,8 @@ class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 		# Add the menu items
 		items = []
 		if file.get_uri_scheme() == "file": # must be a local file/directory
-			if os.path.exists(CODE):
-					items += [self._create_nautilus_item(file, 'File' )]
+			if os.path.exists(INSTALL_PATH):
+				items += [self._create_nautilus_item(file, 'File' )]
 
 		return items 
 
@@ -64,8 +65,9 @@ class VSCodeNautilus(GObject.GObject, Nautilus.MenuProvider):
 		uri = file.get_uri()
 		uri = urllib.parse.unquote(uri)
 		uri = uri.replace('file://','')
-		if ' ' in CODE:
-			command = CODE.split(' ') + [uri]
+		print(uri)
+		if ' ' in COMMAND:
+			command = COMMAND.split(' ') + [uri]
 		else:
-			command = [CODE, uri]
+			command = [COMMAND, uri]
 		subprocess.Popen(command)
