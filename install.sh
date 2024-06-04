@@ -41,12 +41,12 @@ set_location() {
         sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
     elif [[ -e "/usr/bin/codium" ]]; then
         echo "VSCodium is installed in /usr/bin/codium"
-        sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|CODE_REPLACE|/usr/bin/codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
     elif [[ -e "/snap/bin/codium" ]]; then
         echo "VSCode is installed in /snap/bin/codium"
-        sed -i "s|CODE_REPLACE|/snap/bin/code|g" $TARGDIR/vscode-nautilus.py
+        sed -i "s|CODE_REPLACE|/snap/bin/codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open in Code|Open in Codium|g" $TARGDIR/vscode-nautilus.py
         sed -i "s|Open this folder/file in VSCode|Open this folder/file in VSCodium|g" $TARGDIR/vscode-nautilus.py
     else 
